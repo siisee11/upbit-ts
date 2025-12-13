@@ -4,7 +4,21 @@ import { buildAuthHeaders } from "../../auth";
 import { ACCOUNTS_PATH } from "../../config/constants";
 import { toUpbitError } from "../../errors";
 import { normalizeAccount, type UpbitRawAccount } from "../../normalizers";
-import type { UpbitAccount, UpbitCredentials } from "../../types";
+import type { UpbitCredentials } from "../../client/types";
+
+export type UpbitAccount = {
+  currency: string;
+  balance: number;
+  locked: number;
+  avgBuyPrice: number;
+  avgBuyPriceModified: boolean;
+  unitCurrency: string;
+};
+
+export type UpbitAccountsResponse = {
+  accounts: UpbitAccount[];
+};
+
 
 export const fetchAccounts = async (
   http: AxiosInstance,

@@ -4,8 +4,64 @@ import { buildAuthHeaders } from "../../auth";
 import { ORDER_PATH } from "../../config/constants";
 import { toUpbitError } from "../../errors";
 import { normalizeOrder, type UpbitRawOrder } from "../../normalizers";
-import type { UpbitCredentials, UpbitOrder, UpbitOrderRequest } from "../../types";
+import type { UpbitCredentials } from "../../client/types";
 import { validateOrder } from "../../validation/order";
+
+export type UpbitOrderSide = "bid" | "ask";
+
+export type UpbitOrderType = "limit" | "price" | "market" | "best";
+
+export type UpbitOrderRequest = {
+  market: string;
+  side: UpbitOrderSide;
+  ordType?: UpbitOrderType;
+  volume?: number;
+  price?: number;
+  identifier?: string;
+  timeInForce?: "ioc" | "fok" | "post_only";
+  smpType?: "cancel_maker" | "cancel_taker" | "reduce";
+};
+
+export type UpbitOrder = {
+  uuid: string;
+  side: UpbitOrderSide;
+  ordType: UpbitOrderType;
+  price: number | null;
+  state: string;
+  market: string;
+  createdAt: string;
+  volume: number | null;
+  remainingVolume: number | null;
+  reservedFee: number | null;
+  remainingFee: number | null;
+  paidFee: number | null;
+  locked: number | null;
+  executedVolume: number | null;
+  tradeCount: number;
+  timeInForce?: "ioc" | "fok" | "post_only";
+  identifier?: string;
+  smpType?: "cancel_maker" | "cancel_taker" | "reduce";
+  preventedVolume: number;
+  preventedLocked: number;
+};
+
+export type UpbitOrderResponse = {
+  order: UpbitOrder;
+};
+
+export type UpbitOrderErrorCode =
+  | "invalid_parameter"
+  | "invalid_time_in_force"
+  | "invalid_price_bid"
+  | "invalid_price_ask"
+  | "over_krw_funds_bid"
+  | "over_krw_funds_ask"
+  | "insufficient_funds_bid"
+  | "insufficient_funds_ask"
+  | "notfoundmarket"
+  | "market_offline"
+  | string;
+
 
 const buildOrderPayload = (
   request: UpbitOrderRequest & { ordType: string },

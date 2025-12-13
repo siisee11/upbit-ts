@@ -2,7 +2,34 @@ import type { AxiosInstance } from "axios";
 import { ORDERBOOK_PATH } from "../../config/constants";
 import { toUpbitError, UpbitError } from "../../errors";
 import { normalizeOrderbook, type UpbitRawOrderbook } from "../../normalizers";
-import type { UpbitOrderbook, UpbitOrderbookQuery } from "../../types";
+
+export type UpbitOrderbookUnit = {
+  askPrice: number;
+  bidPrice: number;
+  askSize: number;
+  bidSize: number;
+  level?: number;
+};
+
+export type UpbitOrderbook = {
+  market: string;
+  timestamp: number;
+  totalAskSize: number;
+  totalBidSize: number;
+  orderbookUnits: UpbitOrderbookUnit[];
+  level?: number;
+};
+
+export type UpbitOrderbookQuery = {
+  markets: string[];
+  level?: string | number;
+  count?: number;
+};
+
+export type UpbitOrderbookResponse = {
+  orderbook: UpbitOrderbook[];
+};
+
 
 const clampCount = (value: number) => Math.min(Math.max(value, 1), 30);
 
