@@ -15,7 +15,8 @@
     "build:playground": "vite build --config playground/vite.config.ts",
     "preview": "vite preview --config playground/vite.config.ts",
     "prepublishOnly": "npm run build",
-    "test": "vitest"
+    "test": "vitest",
+    "type-check": "tsc --noEmit"
   },
   "files": [
     "dist"
