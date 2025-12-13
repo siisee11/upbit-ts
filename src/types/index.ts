@@ -149,15 +149,51 @@ export type UpbitTickerResponse = {
 };
 
 export type UpbitCandle = {
+  /**
+   * 페어(거래쌍)의 코드
+   * @example "KRW-BTC"
+   */
   market: string;
+  /**
+   * 해당 캔들의 마지막 틱이 저장된 시각의 타임스탬프 (ms)
+   */
   timestamp: number;
+  /**
+   * 캔들 구간의 시작 시각 (KST 기준)
+   * @format yyyy-MM-dd'T'HH:mm:ss
+   */
   timeKst: string;
+  /**
+   * 시가.
+   * 해당 캔들의 첫 거래 가격입니다.
+   */
   openingPrice: number;
+  /**
+   * 고가.
+   * 해당 캔들의 최고 거래 가격입니다.
+   */
   highPrice: number;
+  /**
+   * 저가.
+   * 해당 캔들의 최저 거래 가격입니다.
+   */
   lowPrice: number;
+  /**
+   * 종가.
+   * 해당 페어의 현재 가격입니다.
+   */
   tradePrice: number;
+  /**
+   * 해당 캔들 동안의 누적 거래 금액
+   */
   accTradePrice: number;
+  /**
+   * 해당 캔들 동안의 누적 거래된 디지털 자산의 수량
+   */
   accTradeVolume: number;
+  /**
+   * 분 단위(1, 3, 5, 10, 15, 30, 60, 240)
+   */
   unit: number;
 };
 
@@ -247,8 +283,29 @@ export type UpbitCandleQuery = {
 };
 
 export type UpbitSecondCandleQuery = {
+  /**
+   * 조회하고자 하는 페어(거래쌍)
+   * @example "KRW-BTC"
+   */
   market: string;
+  /**
+   * 조회 기간의 종료 시각.
+   * 지정한 시각 이전 캔들을 조회합니다. 미지정시 요청 시각을 기준으로 최근 캔들이 조회됩니다.
+   *
+   * ISO 8601 형식의 datetime으로 다음과 같이 요청 할 수 있습니다. 실제 요청 시에는 공백 및 특수문자가 정상적으로 처리되도록 URL 인코딩을 수행해야 합니다.
+   *
+   * [예시] 2025-06-24T04:56:53Z
+   * 2025-06-24 04:56:53
+   * 2025-06-24T13:56:53+09:00
+   *
+   * 초 캔들은 요청 시점으로부터 최대 3개월 이전 데이터까지의 조회만 지원하므로, 3개월 이전 시각을 지정하는 경우 응답이 빈 배열로 반환됩니다.
+   */
   to?: string;
+  /**
+   * 조회하고자 하는 캔들의 개수.
+   * 최대 200개의 캔들 조회를 지원하며, 기본값은 1입니다.
+   * @default 1
+   */
   count?: number;
 };
 
