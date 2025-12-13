@@ -26,9 +26,4 @@ const order = await client.exchange.orders({
 });
 ```
 
-Notes:
-- REST only; no WebSocket helpers are implemented yet.
-- `getCandles` uses `/v1/candles/minutes/1`, so it only returns 1-minute candles. Count is clamped to 1–200 with a default of 60.
-- `getOrderbook` uses `/v1/orderbook` with `markets`, optional `level`, and an optional `count` clamped to 1–30 (default 30).
-- Orders are validated locally; only creation is supported today. Cancellation, querying past orders, and batch actions are not implemented.
-
+You can find implementation status in the [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) file.
