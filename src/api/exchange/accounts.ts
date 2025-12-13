@@ -1,10 +1,10 @@
 import { randomUUID } from "node:crypto";
 import type { AxiosInstance } from "axios";
-import { buildAuthHeaders } from "../auth";
-import { ACCOUNTS_PATH } from "../config/constants";
-import { toUpbitError } from "../errors";
-import { normalizeAccount, type UpbitRawAccount } from "../normalizers";
-import type { UpbitAccount, UpbitCredentials } from "../types";
+import { buildAuthHeaders } from "../../auth";
+import { ACCOUNTS_PATH } from "../../config/constants";
+import { toUpbitError } from "../../errors";
+import { normalizeAccount, type UpbitRawAccount } from "../../normalizers";
+import type { UpbitAccount, UpbitCredentials } from "../../types";
 
 export const fetchAccounts = async (
   http: AxiosInstance,

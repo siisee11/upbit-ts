@@ -12,12 +12,12 @@ const client = createUpbitClient({
   secretKey: process.env.UPBIT_SECRET_KEY!,
 });
 
-const accounts = await client.getAccounts();
-const [ticker] = await client.getTicker({ markets: ["KRW-BTC"] });
-const candles = await client.getCandles({ market: "KRW-BTC", count: 30 });
-const [orderbook] = await client.getOrderbook({ markets: ["KRW-BTC"], count: 15 });
+const accounts = await client.exchange.accounts();
+const [ticker] = await client.quotation.ticker({ markets: ["KRW-BTC"] });
+const candles = await client.quotation.candles({ market: "KRW-BTC", count: 30 });
+const [orderbook] = await client.quotation.orderbook({ markets: ["KRW-BTC"], count: 15 });
 
-const order = await client.createOrder({
+const order = await client.exchange.orders({
   market: "KRW-BTC",
   side: "bid",
   ordType: "limit",

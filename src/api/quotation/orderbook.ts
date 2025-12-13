@@ -1,8 +1,8 @@
 import type { AxiosInstance } from "axios";
-import { ORDERBOOK_PATH } from "../config/constants";
-import { toUpbitError, UpbitError } from "../errors";
-import { normalizeOrderbook, type UpbitRawOrderbook } from "../normalizers";
-import type { UpbitOrderbook, UpbitOrderbookQuery } from "../types";
+import { ORDERBOOK_PATH } from "../../config/constants";
+import { toUpbitError, UpbitError } from "../../errors";
+import { normalizeOrderbook, type UpbitRawOrderbook } from "../../normalizers";
+import type { UpbitOrderbook, UpbitOrderbookQuery } from "../../types";
 
 const clampCount = (value: number) => Math.min(Math.max(value, 1), 30);
 
