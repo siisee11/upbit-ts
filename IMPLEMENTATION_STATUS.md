@@ -4,7 +4,7 @@ Status legend: ✅ = available in code, Partial = limited subset, ✖️ = not i
 
 | Category   | Feature group                     | Key feature                                              | REST support | WebSocket support | Notes |
 |------------|-----------------------------------|----------------------------------------------------------|--------------|-------------------|-------|
-| Quotation  | Trading pairs                     | List all ✅ pairs                                 | ✖️      | N/A               |       |
+| Quotation  | Trading pairs                     | List all supported pairs                                 | ✖️      | N/A               |       |
 | Quotation  | Candles (OHLCV)                   | Time unit OHLCV stats per pair                           | Partial      | ✖️           | REST: only 1-minute candles via `/v1/candles/minutes/1`. Other intervals and seconds/day/week/month/year are missing. |
 | Quotation  | Trades                            | Recent trade history                                     | ✖️      | ✖️           |       |
 | Quotation  | Ticker                            | Per-pair ticker (price/volume/change)                    | ✅    | ✖️           | Uses `/v1/ticker` with `markets` query. Quote-level ticker is not covered. |

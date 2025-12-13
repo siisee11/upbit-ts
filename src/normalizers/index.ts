@@ -36,11 +36,11 @@ export type UpbitRawTicker = {
   signed_change_rate: number | string;
   trade_volume: number | string;
   acc_trade_price: number | string;
-  acc_trade_price_24h?: number | string;
+  acc_trade_price_24h: number | string;
   acc_trade_volume: number | string;
-  acc_trade_volume_24h?: number | string;
-  trade_timestamp?: number | string;
-  timestamp?: number | string;
+  acc_trade_volume_24h: number | string;
+  trade_timestamp: number | string;
+  timestamp: number | string;
   highest_52_week_price: number | string;
   highest_52_week_date: string;
   lowest_52_week_price: number | string;
