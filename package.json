@@ -1,0 +1,54 @@
+{
+  "name": "@jasset/upbit",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siisee11/upbit-ts"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "concurrently \"vite --config playground/vite.config.ts\" \"bun --watch playground/server.ts\"",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build:playground": "vite build --config playground/vite.config.ts",
+    "preview": "vite preview --config playground/vite.config.ts",
+    "prepublishOnly": "npm run build",
+    "test": "vitest"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.7",
+    "axios": "^1.13.2",
+    "hono": "^4.10.8",
+    "jsonwebtoken": "^9.0.3",
+    "nanoid": "^5.1.6",
+    "server-only": "^0.0.1",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "concurrently": "9.2.1",
+    "nock": "^14.0.10",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "tsup": "^8.5.1",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.7",
+    "vite-plugin-node-polyfills": "^0.24.0",
+    "vitest": "^4.0.15"
+  }
+}
