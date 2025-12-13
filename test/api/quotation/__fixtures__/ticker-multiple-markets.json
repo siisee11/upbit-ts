@@ -1,0 +1,27 @@
+[
+    {
+        "scope": "https://api.upbit.com:443",
+        "method": "GET",
+        "path": "/v1/ticker?markets=KRW-BTC,KRW-ETH",
+        "body": "",
+        "status": 200,
+        "response": [
+            "1f8b08000000000000ff9c934d6fdb300c86ff8bce8e41522425e6b8a1c086deba023b0c8361244662e413b1db1e86fef7c149f3e1d84ed0ea66bfef4b49149f3fffdc2adf2d8ada8ddde3d3efd1b7e7ef2e71f52e9f16d934af0b3776042448e84fffeb72d5fc4704f3d072678baa1e4a9cb456aa51aa3a5f6ddd18838a1263002f94b8cdb65897eb59b6dd9593c28dd1b3790080143e56e2e6e56c7ed605e94a5f6ede2ee202d2960f2738e701ac6dd8ee8ad76cb2dc5457e7006afb26f37c3d6b5af2f4f3d7833b7e9f1210faecd96edfdebd10cca3464e5c55ced6c534bb53a0edeaab73b8daeb66f9b23a6a20469ab87c32c95a17f70c120829984f63200b705e1d7b463c6f7a10d18880d4fb14d1ac55f7b82b09a502c8624c5dfda31210a640a2442a87072daa3a13cade8a62716a40b0a8d67dfb4bebc5b08e1046606efffe7dd51055ac332943c58047109a79ed9b5435784fae107a78fef11984287c05a18b54cfc1341860072156c4618058030fe2c36278031e56d1fbe874f7bf0d0ecb1d6e2c8851403fc0cd757e089b73990e36e2d518a5071b411f5929b059ead562bc8f0d7980184d2233a5c122f93e6c101124551115c238040e1b474e994220f436488ec6eb26dce206e28878901b02d34f5163fdd4a8b187f7bfff010000ffff0300c522da3f7a060000"
+        ],
+        "rawHeaders": {
+            "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+            "connection": "close",
+            "content-encoding": "gzip",
+            "content-type": "application/json;charset=UTF-8",
+            "date": "Sat, 13 Dec 2025 11:09:32 GMT",
+            "etag": "W/\"0d9e43c774971d11e229efed5e5898557\"",
+            "expires": "0",
+            "limit-by-ip": "Yes",
+            "pragma": "no-cache",
+            "remaining-req": "group=ticker; min=600; sec=8",
+            "transfer-encoding": "chunked",
+            "vary": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+        },
+        "responseIsBinary": false
+    }
+]

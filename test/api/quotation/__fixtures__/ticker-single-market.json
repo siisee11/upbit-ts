@@ -1,0 +1,27 @@
+[
+    {
+        "scope": "https://api.upbit.com:443",
+        "method": "GET",
+        "path": "/v1/ticker?markets=KRW-BTC",
+        "body": "",
+        "status": 200,
+        "response": [
+            "1f8b08000000000000ff8452c96e833010fd179f01cd8cb1cd706cd543d55b5aa987aab210b100252c029a1caafe7b45161287549d9be72d9eede35bd459bf71a348c5cbea3d7c787b148118fb6cedec3a1b9d480501292494737eacea298f082cc163dbcd30fea598314f3521c398d59d48d168a5294603525120dace355553d8aeaf72275294314b0080084e1188b22aca0bae906ef06dbbbf922b503e7cace0a207609fd0f56e67f36d3bdcd401e4f3f2326b8a6924abe7d727717ecf0a30f7e8b63f8cf7001896a89338104355346e6dff31f059f77c8eadeddaed577dc64031e94064796ebdc6650cca109261192586d8c02516744b7139cd20412602d2524688cc9eeff957521429c058714c4bfce404841190d2445a1d17ea86d12ab27be736f3000c279a97bbbfa65e1d6b8810028bc3feefb9216ac58b4bf9cb0ce210cc74aff72e5533fc7cfe020000ffff0300bb10338644030000"
+        ],
+        "rawHeaders": {
+            "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+            "connection": "close",
+            "content-encoding": "gzip",
+            "content-type": "application/json;charset=UTF-8",
+            "date": "Sat, 13 Dec 2025 11:09:32 GMT",
+            "etag": "W/\"08cfc9c7e01da452ef90f4fa313d378ea\"",
+            "expires": "0",
+            "limit-by-ip": "Yes",
+            "pragma": "no-cache",
+            "remaining-req": "group=ticker; min=600; sec=9",
+            "transfer-encoding": "chunked",
+            "vary": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+        },
+        "responseIsBinary": false
+    }
+]
