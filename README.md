@@ -1,6 +1,6 @@
 # @jasset/upbit
 
-Typed, minimal Upbit API helper focused on the endpoints currently used in this repo. It ships with REST helpers for balances, tickers, orderbooks, 1-minute candles, and basic order placement.
+A lightweight, fully typed TypeScript client for the Upbit API. Designed for developers who need a simple yet powerful interface for crypto trading and market data. Supports REST endpoints for balances, tickers, orderbooks, candles, and order management.
 
 ## Quickstart
 

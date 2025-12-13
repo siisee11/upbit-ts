@@ -242,6 +242,13 @@ export type UpbitTickerQuery = {
 
 export type UpbitCandleQuery = {
   market: string;
+  to?: string;
+  count?: number;
+};
+
+export type UpbitSecondCandleQuery = {
+  market: string;
+  to?: string;
   count?: number;
 };
 

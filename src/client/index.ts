@@ -16,9 +16,11 @@ import type {
   UpbitOrderbook,
   UpbitOrderbookQuery,
   UpbitOrderRequest,
+  UpbitSecondCandleQuery,
   UpbitTicker,
   UpbitTickerQuery,
 } from "../types";
+import { fetchSecondCandles } from "../api/quotation/candles/seconds";
 
 
 export class UpbitExchange {
@@ -45,6 +47,10 @@ export class UpbitQuotation {
 
   async candles(query: UpbitCandleQuery): Promise<UpbitCandle[]> {
     return fetchCandles(this.http, query);
+  }
+
+  async candlesSeconds(query: UpbitSecondCandleQuery): Promise<UpbitCandle[]> {
+    return fetchSecondCandles(this.http, query);
   }
 
   async orderbook(query: UpbitOrderbookQuery): Promise<UpbitOrderbook[]> {

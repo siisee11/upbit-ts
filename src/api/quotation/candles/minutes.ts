@@ -1,8 +1,8 @@
 import type { AxiosInstance } from "axios";
-import { CANDLE_PATH } from "../../config/constants";
-import { toUpbitError, UpbitError } from "../../errors";
-import { normalizeCandle, type UpbitRawCandle } from "../../normalizers";
-import type { UpbitCandle, UpbitCandleQuery } from "../../types";
+import { CANDLE_PATH } from "../../../config/constants";
+import { toUpbitError, UpbitError } from "../../../errors";
+import { normalizeCandle, type UpbitRawCandle } from "../../../normalizers";
+import type { UpbitCandle, UpbitCandleQuery } from "../../../types";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(Math.max(value, min), max);

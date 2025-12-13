@@ -57,7 +57,7 @@ export type UpbitRawCandle = {
   trade_price: number | string;
   candle_acc_trade_price: number | string;
   candle_acc_trade_volume: number | string;
-  unit: number;
+  unit?: number;
 };
 
 export type UpbitRawOrder = {
@@ -185,7 +185,7 @@ export const normalizeCandle = (raw: UpbitRawCandle): UpbitCandle => ({
   tradePrice: toNumber(raw.trade_price),
   accTradePrice: toNumber(raw.candle_acc_trade_price),
   accTradeVolume: toNumber(raw.candle_acc_trade_volume),
-  unit: raw.unit,
+  unit: raw.unit ?? 1,
 });
 
 export const normalizeOrder = (raw: UpbitRawOrder): UpbitOrder => ({
