@@ -7,6 +7,7 @@ import type {
   UpbitOrderSide,
   UpbitOrderType,
   UpbitTicker,
+  UpbitTradeTick,
 } from "../types";
 
 export type UpbitRawAccount = {
@@ -45,6 +46,19 @@ export type UpbitRawTicker = {
   highest_52_week_date: string;
   lowest_52_week_price: number | string;
   lowest_52_week_date: string;
+};
+
+export type UpbitRawTradeTick = {
+  market: string;
+  trade_date_utc: string;
+  trade_time_utc: string;
+  timestamp: number;
+  trade_price: number;
+  trade_volume: number;
+  prev_closing_price: number;
+  change_price: number;
+  ask_bid: "ASK" | "BID";
+  sequential_id: number;
 };
 
 export type UpbitRawCandle = {
@@ -173,6 +187,19 @@ export const normalizeTicker = (raw: UpbitRawTicker): UpbitTicker => ({
   highest52WeekDate: raw.highest_52_week_date,
   lowest52WeekPrice: toNumber(raw.lowest_52_week_price),
   lowest52WeekDate: raw.lowest_52_week_date,
+});
+
+export const normalizeTradeTick = (raw: UpbitRawTradeTick): UpbitTradeTick => ({
+  market: raw.market,
+  tradeDateUtc: raw.trade_date_utc,
+  tradeTimeUtc: raw.trade_time_utc,
+  timestamp: raw.timestamp,
+  tradePrice: raw.trade_price,
+  tradeVolume: raw.trade_volume,
+  prevClosingPrice: raw.prev_closing_price,
+  changePrice: raw.change_price,
+  askBid: raw.ask_bid,
+  sequentialId: raw.sequential_id,
 });
 
 export const normalizeCandle = (raw: UpbitRawCandle): UpbitCandle => ({

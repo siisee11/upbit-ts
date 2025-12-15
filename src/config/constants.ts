@@ -6,3 +6,4 @@ export const CANDLE_SECONDS_PATH = "/v1/candles/seconds";
 export const CANDLE_DAYS_PATH = "/v1/candles/days";
 export const ORDER_PATH = "/v1/orders";
 export const ORDERBOOK_PATH = "/v1/orderbook";
+export const TRADES_TICKS_PATH = "/v1/trades/ticks";
