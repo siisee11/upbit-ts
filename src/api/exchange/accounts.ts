@@ -1,10 +1,10 @@
 import { randomUUID } from "node:crypto";
 import type { AxiosInstance } from "axios";
 import { buildAuthHeaders } from "../../auth";
+import type { UpbitCredentials } from "../../client/types";
 import { ACCOUNTS_PATH } from "../../config/constants";
 import { toUpbitError } from "../../errors";
 import { normalizeAccount, type UpbitRawAccount } from "../../normalizers";
-import type { UpbitCredentials } from "../../client/types";
 
 export type UpbitAccount = {
   currency: string;
