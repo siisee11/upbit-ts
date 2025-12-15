@@ -56,3 +56,36 @@ export type UpbitCandleQuery = {
   to?: string;
   count?: number;
 };
+
+export type UpbitDayCandleQuery = {
+  /**
+   * 조회하고자 하는 페어(거래쌍)
+   * @example "KRW-BTC"
+   */
+  market: string;
+  /**
+   * 조회 기간의 종료 시각.
+   * 지정한 시각 이전 캔들을 조회합니다. 미지정시 요청 시각을 기준으로 최근 캔들이 조회됩니다.
+   *
+   * ISO 8601 형식의 datetime으로 아래와 같이 요청 할 수 있습니다. 실제 요청 시에는 공백 및 특수문자가 정상적으로 처리되도록 URL 인코딩을 수행해야 합니다.
+   *
+   * [예시]
+   * 2025-06-24T04:56:53Z
+   * 2025-06-24 04:56:53
+   * 2025-06-24T13:56:53+09:00
+   */
+  to?: string;
+  /**
+   * 조회하고자 하는 캔들의 개수.
+   * 최대 200개의 캔들 조회를 지원하며, 기본값은 1입니다.
+   * @default 1
+   */
+  count?: number;
+  /**
+   * 종가 환산 통화.
+   * 종가를 특정 통화로 환산하고자 하는 경우 선택적으로 지정할 수 있습니다. 사용시 응답에 “converted_trade_price” 필드가 추가로 반환됩니다.
+   *
+   * [예시] “KRW”로 지정시 원가로 환산된 종가가 반환됨.
+   */
+  converting_price_unit?: string;
+};
