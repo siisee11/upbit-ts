@@ -148,11 +148,9 @@ const orderSchema = z
 
 export const validateOrder = (
   request: UpbitOrderRequest,
-): UpbitOrderRequest & {
-  ordType: NonNullable<UpbitOrderRequest["ordType"]>;
-} => {
+): UpbitOrderRequest => {
   try {
-    return orderSchema.parse(request);
+    return orderSchema.parse(request) as UpbitOrderRequest;
   } catch (error) {
     if (error instanceof ZodError) {
       const message =
