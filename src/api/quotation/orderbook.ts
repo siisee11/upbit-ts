@@ -30,7 +30,6 @@ export type UpbitOrderbookResponse = {
   orderbook: UpbitOrderbook[];
 };
 
-
 const clampCount = (value: number) => Math.min(Math.max(value, 1), 30);
 
 export const fetchOrderbook = async (

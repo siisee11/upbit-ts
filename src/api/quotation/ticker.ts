@@ -3,7 +3,6 @@ import { TICKER_PATH } from "../../config/constants";
 import { toUpbitError, UpbitError } from "../../errors";
 import { normalizeTicker, type UpbitRawTicker } from "../../normalizers";
 
-
 export type UpbitTicker = {
   /**
    * 페어(거래쌍)의 코드
@@ -150,7 +149,6 @@ export type UpbitTickerQuery = {
    */
   markets: string[];
 };
-
 
 /**
  * 페어 단위 현재가 조회

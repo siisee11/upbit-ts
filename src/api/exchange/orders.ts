@@ -62,7 +62,6 @@ export type UpbitOrderErrorCode =
   | "market_offline"
   | string;
 
-
 const buildOrderPayload = (
   request: UpbitOrderRequest & { ordType: string },
 ) => {

@@ -19,7 +19,6 @@ export type UpbitAccountsResponse = {
   accounts: UpbitAccount[];
 };
 
-
 export const fetchAccounts = async (
   http: AxiosInstance,
   credentials: UpbitCredentials,

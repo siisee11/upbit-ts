@@ -22,12 +22,11 @@ import type {
 } from "../types";
 import { fetchSecondCandles } from "../api/quotation/candles/seconds";
 
-
 export class UpbitExchange {
   constructor(
     private http: AxiosInstance,
-    private getCredentials: () => UpbitCredentials
-  ) { }
+    private getCredentials: () => UpbitCredentials,
+  ) {}
 
   async accounts(): Promise<UpbitAccount[]> {
     return fetchAccounts(this.http, this.getCredentials());
@@ -39,7 +38,7 @@ export class UpbitExchange {
 }
 
 export class UpbitQuotation {
-  constructor(private http: AxiosInstance) { }
+  constructor(private http: AxiosInstance) {}
 
   async ticker(query: UpbitTickerQuery): Promise<UpbitTicker[]> {
     return fetchTicker(this.http, query);
@@ -74,7 +73,9 @@ export class UpbitClient {
       headers: { Accept: "application/json" },
     });
 
-    this.exchange = new UpbitExchange(this.http, () => this.requireCredentials());
+    this.exchange = new UpbitExchange(this.http, () =>
+      this.requireCredentials(),
+    );
     this.quotation = new UpbitQuotation(this.http);
   }
 
