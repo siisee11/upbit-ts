@@ -9,11 +9,16 @@ import { ensureCredentials } from "../auth";
 import { DEFAULT_BASE_URL } from "../config/constants";
 import type {
   UpbitAccount,
+  UpbitBestBuyOrderRequest,
+  UpbitBestSellOrderRequest,
   UpbitCandle,
   UpbitCandleQuery,
   UpbitClientOptions,
   UpbitCredentials,
   UpbitDayCandleQuery,
+  UpbitLimitOrderRequest,
+  UpbitMarketBuyOrderRequest,
+  UpbitMarketSellOrderRequest,
   UpbitOrder,
   UpbitOrderbook,
   UpbitOrderbookQuery,
@@ -30,6 +35,40 @@ export class UpbitExchange {
 
   public orders: {
     post: (request: UpbitOrderRequest) => Promise<UpbitOrder>;
+    bid: {
+      limit: {
+        post: (
+          request: Omit<UpbitLimitOrderRequest, "ordType" | "side">,
+        ) => Promise<UpbitOrder>;
+      };
+      price: {
+        post: (
+          request: Omit<UpbitMarketBuyOrderRequest, "ordType" | "side">,
+        ) => Promise<UpbitOrder>;
+      };
+      best: {
+        post: (
+          request: Omit<UpbitBestBuyOrderRequest, "ordType" | "side">,
+        ) => Promise<UpbitOrder>;
+      };
+    };
+    ask: {
+      limit: {
+        post: (
+          request: Omit<UpbitLimitOrderRequest, "ordType" | "side">,
+        ) => Promise<UpbitOrder>;
+      };
+      market: {
+        post: (
+          request: Omit<UpbitMarketSellOrderRequest, "ordType" | "side">,
+        ) => Promise<UpbitOrder>;
+      };
+      best: {
+        post: (
+          request: Omit<UpbitBestSellOrderRequest, "ordType" | "side">,
+        ) => Promise<UpbitOrder>;
+      };
+    };
   };
 
   constructor(
@@ -42,6 +81,58 @@ export class UpbitExchange {
     this.orders = {
       post: async (request) =>
         placeOrder(this.http, request, this.getCredentials()),
+      bid: {
+        limit: {
+          post: async (request) =>
+            placeOrder(
+              this.http,
+              { ...request, ordType: "limit", side: "bid" },
+              this.getCredentials(),
+            ),
+        },
+        price: {
+          post: async (request) =>
+            placeOrder(
+              this.http,
+              { ...request, ordType: "price", side: "bid" },
+              this.getCredentials(),
+            ),
+        },
+        best: {
+          post: async (request) =>
+            placeOrder(
+              this.http,
+              { ...request, ordType: "best", side: "bid" },
+              this.getCredentials(),
+            ),
+        },
+      },
+      ask: {
+        limit: {
+          post: async (request) =>
+            placeOrder(
+              this.http,
+              { ...request, ordType: "limit", side: "ask" },
+              this.getCredentials(),
+            ),
+        },
+        market: {
+          post: async (request) =>
+            placeOrder(
+              this.http,
+              { ...request, ordType: "market", side: "ask" },
+              this.getCredentials(),
+            ),
+        },
+        best: {
+          post: async (request) =>
+            placeOrder(
+              this.http,
+              { ...request, ordType: "best", side: "ask" },
+              this.getCredentials(),
+            ),
+        },
+      },
     };
   }
 }
