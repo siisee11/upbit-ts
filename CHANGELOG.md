@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.0
+
+### Features
+
+- Added granular order methods to `UpbitExchange` for better developer experience.
+  - `client.exchange.orders.bid.limit.post(request)`
+  - `client.exchange.orders.bid.price.post(request)`
+  - `client.exchange.orders.bid.best.post(request)`
+  - `client.exchange.orders.ask.limit.post(request)`
+  - `client.exchange.orders.ask.market.post(request)`
+  - `client.exchange.orders.ask.best.post(request)`
+
 ## 0.1.0
 
 ### Breaking Changes
