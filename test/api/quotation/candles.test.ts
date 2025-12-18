@@ -1,14 +1,14 @@
-import { describe, it, expect } from "vitest";
-import nock from "nock";
 import axios from "axios";
+import nock from "nock";
+import { describe, expect, it } from "vitest";
 import {
-  fetchCandles,
+  fetchMinuteCandles,
   fetchSecondCandles,
 } from "../../../src/api/quotation/candles";
 import {
-  DEFAULT_BASE_URL,
   CANDLE_PATH,
   CANDLE_SECONDS_PATH,
+  DEFAULT_BASE_URL,
 } from "../../../src/config/constants";
 import type { UpbitRawCandle } from "../../../src/normalizers";
 
@@ -28,14 +28,14 @@ describe("Candles API", () => {
     unit: 1,
   };
 
-  describe("fetchCandles (Minutes)", () => {
+  describe("fetchMinuteCandles", () => {
     it("should fetch minute candles", async () => {
       nock(DEFAULT_BASE_URL)
         .get(CANDLE_PATH)
         .query({ market: "KRW-BTC", count: 60 })
         .reply(200, [mockCandle]);
 
-      const result = await fetchCandles(http, { market: "KRW-BTC" });
+      const result = await fetchMinuteCandles(http, { market: "KRW-BTC" });
       expect(result).toHaveLength(1);
       expect(result[0].market).toBe("KRW-BTC");
     });
@@ -54,7 +54,7 @@ describe("Candles API", () => {
     });
 
     it("should fetch second candles with optional params", async () => {
-      const parsedUrl = new URL(CANDLE_SECONDS_PATH, DEFAULT_BASE_URL);
+      const _parsedUrl = new URL(CANDLE_SECONDS_PATH, DEFAULT_BASE_URL);
       nock(DEFAULT_BASE_URL)
         .get(CANDLE_SECONDS_PATH)
         .query({ market: "KRW-BTC", to: "2023-01-01T00:00:00Z", count: 10 })
