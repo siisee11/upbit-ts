@@ -1,8 +1,9 @@
 import axios, { type AxiosInstance } from "axios";
 import { fetchAccounts } from "../api/exchange/accounts";
-import { fetchCandles } from "../api/quotation/candles";
-import { fetchOrderbook } from "../api/quotation/orderbook";
 import { placeOrder } from "../api/exchange/orders";
+import { fetchDayCandles, fetchMinuteCandles } from "../api/quotation/candles";
+import { fetchSecondCandles } from "../api/quotation/candles/seconds";
+import { fetchOrderbook } from "../api/quotation/orderbook";
 import { fetchTicker } from "../api/quotation/ticker";
 import { ensureCredentials } from "../auth";
 import { DEFAULT_BASE_URL } from "../config/constants";
@@ -12,6 +13,7 @@ import type {
   UpbitCandleQuery,
   UpbitClientOptions,
   UpbitCredentials,
+  UpbitDayCandleQuery,
   UpbitOrder,
   UpbitOrderbook,
   UpbitOrderbookQuery,
@@ -20,40 +22,69 @@ import type {
   UpbitTicker,
   UpbitTickerQuery,
 } from "../types";
-import { fetchSecondCandles } from "../api/quotation/candles/seconds";
 
 export class UpbitExchange {
+  public accounts: {
+    get: () => Promise<UpbitAccount[]>;
+  };
+
+  public orders: {
+    post: (request: UpbitOrderRequest) => Promise<UpbitOrder>;
+  };
+
   constructor(
     private http: AxiosInstance,
     private getCredentials: () => UpbitCredentials,
-  ) {}
-
-  async accounts(): Promise<UpbitAccount[]> {
-    return fetchAccounts(this.http, this.getCredentials());
-  }
-
-  async orders(request: UpbitOrderRequest): Promise<UpbitOrder> {
-    return placeOrder(this.http, request, this.getCredentials());
+  ) {
+    this.accounts = {
+      get: async () => fetchAccounts(this.http, this.getCredentials()),
+    };
+    this.orders = {
+      post: async (request) =>
+        placeOrder(this.http, request, this.getCredentials()),
+    };
   }
 }
 
 export class UpbitQuotation {
-  constructor(private http: AxiosInstance) {}
+  public ticker: {
+    get: (query: UpbitTickerQuery) => Promise<UpbitTicker[]>;
+  };
 
-  async ticker(query: UpbitTickerQuery): Promise<UpbitTicker[]> {
-    return fetchTicker(this.http, query);
-  }
+  public candles: {
+    minutes: {
+      get: (query: UpbitCandleQuery) => Promise<UpbitCandle[]>;
+    };
+    seconds: {
+      get: (query: UpbitSecondCandleQuery) => Promise<UpbitCandle[]>;
+    };
+    days: {
+      get: (query: UpbitDayCandleQuery) => Promise<UpbitCandle[]>;
+    };
+  };
 
-  async candles(query: UpbitCandleQuery): Promise<UpbitCandle[]> {
-    return fetchCandles(this.http, query);
-  }
+  public orderbook: {
+    get: (query: UpbitOrderbookQuery) => Promise<UpbitOrderbook[]>;
+  };
 
-  async candlesSeconds(query: UpbitSecondCandleQuery): Promise<UpbitCandle[]> {
-    return fetchSecondCandles(this.http, query);
-  }
-
-  async orderbook(query: UpbitOrderbookQuery): Promise<UpbitOrderbook[]> {
-    return fetchOrderbook(this.http, query);
+  constructor(private http: AxiosInstance) {
+    this.ticker = {
+      get: async (query) => fetchTicker(this.http, query),
+    };
+    this.candles = {
+      minutes: {
+        get: async (query) => fetchMinuteCandles(this.http, query),
+      },
+      seconds: {
+        get: async (query) => fetchSecondCandles(this.http, query),
+      },
+      days: {
+        get: async (query) => fetchDayCandles(this.http, query),
+      },
+    };
+    this.orderbook = {
+      get: async (query) => fetchOrderbook(this.http, query),
+    };
   }
 }
 
